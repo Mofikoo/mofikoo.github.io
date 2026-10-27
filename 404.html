@@ -5,8 +5,10 @@
 <title>Not found</title>
 <meta name="robots" content="noindex">
 <script>
-// Old links to the Anatomy app (/Quizz/cards...) go through /Quizz/, which forwards the saved progress
+// Old links to the Anatomy app (/Quizz/cards...) go through /Quizz/, which forwards the saved progress;
+// old links to the clinical tests go to their new page
 if (/^\/quizz(\/|$)/i.test(location.pathname)) location.replace('/Quizz/');
+else if (/^\/valoracion-cards(\/|$)/i.test(location.pathname)) location.replace('https://studyanatomy.vercel.app/tests');
 </script>
 </head>
 <body>
