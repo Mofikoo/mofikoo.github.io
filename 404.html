@@ -1,0 +1,15 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Not found</title>
+<meta name="robots" content="noindex">
+<script>
+// Old links to the Anatomy app (/Quizz/cards...) go through /Quizz/, which forwards the saved progress
+if (/^\/quizz(\/|$)/i.test(location.pathname)) location.replace('/Quizz/');
+</script>
+</head>
+<body>
+<p>Page not found. Looking for the Anatomy app? It is at <a href="https://studyanatomy.vercel.app/">studyanatomy.vercel.app</a>.</p>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Anatomy has moved</title>
+<meta name="robots" content="noindex">
+<link rel="canonical" href="https://studyanatomy.vercel.app/">
+<script>
+// The app moved from GitHub Pages to Vercel. Progress lives in localStorage, which is per domain,
+// so carry it along in the URL hash. Muscle ids are random per browser: key everything by name.
+(function () {
+  if (!/\.github\.io$/.test(location.hostname)) return;
+  var target = 'https://studyanatomy.vercel.app/';
+  try {
+    var read = function (k) { try { return JSON.parse(localStorage.getItem(k)); } catch (e) { return null; } };
+    var muscles = read('musclequiz_v2_muscles') || [];
+    var nameOf = {};
+    muscles.forEach(function (m) { nameOf[m.id] = m.name; });
+    var byName = function (obj) {
+      var out = {};
+      Object.keys(obj || {}).forEach(function (id) { out[nameOf[id] ? 'm:' + nameOf[id] : id] = obj[id]; });
+      return out;
+    };
+    var payload = {
+      stats: byName(read('musclequiz_v2_stats')),
+      fsrs: byName(read('musclequiz_fsrs_v1')),
+      edited: muscles.filter(function (m) { return m.edited; }),
+    };
+    if (Object.keys(payload.stats).length || Object.keys(payload.fsrs).length || payload.edited.length) {
+      target += '#import=' + encodeURIComponent(JSON.stringify(payload));
+    }
+  } catch (e) {}
+  location.replace(target);
+})();
+</script>
+</head>
+<body>
+<p>Anatomy has moved to <a href="https://studyanatomy.vercel.app/">studyanatomy.vercel.app</a>.</p>
+</body>
+</html>
